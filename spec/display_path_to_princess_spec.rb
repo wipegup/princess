@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/functions.rb'
+require './lib/functions'
 require './lib/grid'
 require './lib/move_processor'
 
