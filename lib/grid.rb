@@ -1,5 +1,5 @@
-require 'pry'
 require './lib/text_to_grid'
+
 class Grid
   INVALID_GRID_ERROR = [ArgumentError, "Invalid Grid"]
   include TextToGrid

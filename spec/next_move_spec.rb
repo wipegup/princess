@@ -14,11 +14,10 @@ def test_next_move(file_path)
       expect { move = nextMove(*move_result) }.to output.to_stdout
       move_result = m_p.move(move)
     end
-
     expect(m_p.best_score?).to eq(true) # Check for completed AND best score
 end
 
-describe "displayPathtoPrincess" do
+describe "nextMove" do
   it "solves test_1" do
     test_next_move('./data/test_1.txt')
   end

@@ -1,20 +1,35 @@
-def displayPathtoPrincess(n, grid)
-  p_col = nil
-  p_row = grid.index{|row| p_col = row.index("p")}
-
-  m_col = m_row = n / 2
+def displayPathtoPrincess(n, grid, print = true)
+  p_row, p_col = find_char_coordinates("p", grid)
+  m_row, m_col = find_char_coordinates("m", grid)
 
   row_diff = m_row - p_row
   col_diff = m_col - p_col
 
+  go_down = row_diff < 0
+  go_right = col_diff < 0
+
   directions = ''
+  directions += go_down ? "DOWN\n" * row_diff.abs : "UP\n" * row_diff
+  directions += go_right ? "RIGHT\n" * col_diff.abs : "LEFT\n" * col_diff
 
-  directions += "DOWN\n" * row_diff.abs if row_diff < 0
-  directions += "UP\n" * row_diff if row_diff > 0
+  print directions.chomp if print
+  directions.chomp
+end
 
-  directions += "RIGHT\n" * col_diff.abs if col_diff < 0
-  directions += "LEFT\n" * col_diff if col_diff  > 0
 
-  print directions.chomp
-  return directions
+def nextMove(n, r, c, grid)
+  direction = displayPathtoPrincess(n, grid, print = false)
+                .split("\n")
+                .first
+
+  print direction
+  direction
+end
+
+
+def find_char_coordinates(char, grid)
+  col_index = nil
+  row_index = grid.index{|row| col_index = row.index(char)}
+
+  [row_index, col_index]
 end
