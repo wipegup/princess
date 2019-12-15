@@ -1,5 +1,5 @@
 require 'spec_helper'
-# require './lib/display_path_to_princess.rb'
+require './lib/functions'
 describe "displayPathtoPrincess" do
   it "passes Hacker Rank Test" do
     n = 3
