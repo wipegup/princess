@@ -27,7 +27,6 @@ def nextMove(n, r, c, grid)
                 .first
 
   print direction
-  direction
 end
 
 
