@@ -3,18 +3,24 @@ require './lib/functions'
 require './lib/grid'
 require './lib/move_processor'
 
+
 def test_display_path(file_path)
-    grid = Grid.new(path: file_path)
-    m_p = MoveProcessor.new(grid)
+  $stdout = StringIO.new # Save output to StringIO
 
-    result = displayPathtoPrincess(grid.n, grid.array)
+  grid = Grid.new(path: file_path)
+  m_p = MoveProcessor.new(grid)
+  displayPathtoPrincess(grid.n, grid.array)
+  result = $stdout.string
 
-    m_p.move_list(result)
-    expect(m_p.best_score?).to eq(true)
+  m_p.move_list(result)
+  expect(m_p.best_score?).to eq(true)
 
-    grid = Grid.new(path: file_path)
-    expected = m_p.moves.join("\n")
-    expect { displayPathtoPrincess(grid.n, grid.array) }.to output(expected).to_stdout
+  grid = Grid.new(path: file_path)
+  expected = m_p.moves.join("\n")
+  expect { displayPathtoPrincess(grid.n, grid.array) }.to output(expected).to_stdout
+  expect(displayPathtoPrincess(grid.n, grid.array)).to eq(nil)
+
+  $stdout = STDOUT # Reset output to standard output
 end
 
 describe "displayPathtoPrincess" do
